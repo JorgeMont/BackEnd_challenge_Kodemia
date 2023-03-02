@@ -6,21 +6,11 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true,
-    unique: true
   },
   password: {
     type: String,
     required: true,
     minLength: 8
-  },
-  role: {
-    type: String,
-    enum: {
-      values: ['admin', 'staff'],
-      message: 'This {VALUE} option is not supported'
-    },
-    required: true
   },
   posts: [
     {

@@ -2,7 +2,7 @@ import * as express from 'express';
 
 import PostController from '../controllers/post.controller'
 
-const router = express.Router('/api/v1/posts')
+const router = express.Router('/api/v1/posts/')
 
 .get('/', PostController.getAllPosts)
   .post('/', PostController.createPost)
