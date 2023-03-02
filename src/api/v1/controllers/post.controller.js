@@ -46,8 +46,18 @@ export class PostController {
       
   }
 
-  updatePost(request, response) {
-    response.json({ message: 'Update User OK' })
+  updatePost = async (request, response) => {
+    try {
+      const { id } = request.params
+      const bodyParams = { ...request.body }
+  
+      const updatedPost= await Post.findByIdAndUpdate(id, bodyParams, 
+          { new: true })
+  
+      response.status(201).send(updatedPost)
+    } catch(error) {
+      console.log(error)
+    }
   }
 
   deletePost = async (request, response) => {
