@@ -12,8 +12,20 @@ export class PostController {
     }
   }
 
-  getPost(request, response) {
-    response.json({ message: 'Create User OK' })
+  getPost = async(request, response, next) => {
+    try {
+      const { id } = request.params
+      const post = await Post.findById(id)
+
+      if(!post){
+        response.status(404).send({ 
+          error: 'No se encontro ningún registro en la base de datos'
+        })
+      }
+      response.status(200).send(post)
+    } catch (error) {
+      next(error)
+    }
   }
 
   createPost = async (request, response, next) => {
