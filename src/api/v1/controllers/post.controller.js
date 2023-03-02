@@ -1,3 +1,5 @@
+import { err } from "pino-std-serializers"
+import Post from "../models/post.model"
 
 export class PostController {
   getAllPosts(request, response) {
@@ -8,8 +10,22 @@ export class PostController {
     response.json({ message: 'Get User OK' })
   }
 
-  createPost(request, response) {
-    response.json({ message: 'Create User OK' })
+  createPost = async (request, response, next) => {
+    // response.json({ message: 'Create User OK' })
+    try {
+      const {title, content, author} = request.body
+      const newPost = new Post({
+        title,
+        content,
+        author
+      })
+
+      await newPost.save()
+      response.status(201).send(newPost);
+    } catch (error) {
+      next(error)
+    }
+      
   }
 
   updatePost(request, response) {
