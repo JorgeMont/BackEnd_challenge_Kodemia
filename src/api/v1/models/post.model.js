@@ -10,6 +10,12 @@ const postSchema = new mongoose.Schema({
   author: {
     type: String,
   },
+  coverImage: {
+    type: String,
+  },
+  tags: {
+    type: Array,
+  },
 },
 { 
     timestamps: true 

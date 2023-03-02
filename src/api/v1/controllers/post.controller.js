@@ -31,11 +31,13 @@ export class PostController {
   createPost = async (request, response, next) => {
     // response.json({ message: 'Create User OK' })
     try {
-      const {title, content, author} = request.body
+      const {title, content, author, coverImage, tags} = request.body
       const newPost = new Post({
         title,
         content,
-        author
+        author,
+        coverImage,
+        tags
       })
 
       await newPost.save()
