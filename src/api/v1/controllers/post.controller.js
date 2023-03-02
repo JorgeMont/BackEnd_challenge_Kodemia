@@ -50,8 +50,18 @@ export class PostController {
     response.json({ message: 'Update User OK' })
   }
 
-  deletePost(request, response) {
-    response.json({ message: 'Delete User OK' })
+  deletePost = async (request, response) => {
+
+    const { id } = request.params
+    const deletedPost = await Post.findByIdAndDelete(id)
+    
+    if (!deletedPost) {
+      response.status(404).send({ 
+        error: 'No se encontro ningún registro en la base de datos'
+      })
+    }
+
+    response.status(200).send({ message: 'Registro eliminado correctamente'})
   }
 }
 
