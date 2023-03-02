@@ -1,13 +1,19 @@
-import { err } from "pino-std-serializers"
+// import { err } from "pino-std-serializers"
 import Post from "../models/post.model"
 
 export class PostController {
-  getAllPosts(request, response) {
-    response.json({ message: 'Get All Users OK' })
+
+  getAllPosts = async(request, response) => {
+    try {
+      const posts = await Post.find({}); //Con los {} dice que traiga todo
+        response.status(200).send(posts);
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   getPost(request, response) {
-    response.json({ message: 'Get User OK' })
+    response.json({ message: 'Create User OK' })
   }
 
   createPost = async (request, response, next) => {
