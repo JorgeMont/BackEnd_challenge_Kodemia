@@ -16,6 +16,12 @@ const postSchema = new mongoose.Schema({
   tags: {
     type: Array,
   },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
+  ],
 },
 { 
     timestamps: true 
