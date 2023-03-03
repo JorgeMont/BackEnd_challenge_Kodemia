@@ -9,8 +9,6 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
-    minLength: 8
   },
   posts: [
     {
@@ -18,12 +16,6 @@ const userSchema = new mongoose.Schema({
       ref: 'Post'
     }
   ],
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment'
-    }
-  ]
 }, { 
   timestamps: true 
 })

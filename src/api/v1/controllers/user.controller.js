@@ -1,6 +1,6 @@
 // import UserService from '../../'
 
-import User from "../models/post.model"
+import User from "../models/user.model"
 
 export class UserController {
 
@@ -53,7 +53,7 @@ export class UserController {
       const { id } = request.params
       const bodyParams = { ...request.body }
   
-      const updatedUser = await Post.findByIdAndUpdate(id, bodyParams, 
+      const updatedUser = await User.findByIdAndUpdate(id, bodyParams, 
           { new: true })
   
       response.status(201).send(updatedUser)
